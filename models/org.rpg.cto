@@ -1,0 +1,54 @@
+namespace org.rpg
+
+//participantes en el blockchain
+
+participant Propietario identified by cedulaPropietario {
+  o String cedulaPropietario
+  o String nombre
+  o String apellido
+}
+
+participant Municipio identified by idMunicipio {
+  o String idMunicipio
+}
+
+participant RegistroPropiedadGuayaquil identified by idRPG {
+  o String idRPG
+}
+
+//activos en el blockchain
+
+asset Predio identified by codigoCatastral {
+  o String codigoCatastral
+  --> Propietario propietario
+}
+
+asset Escritura identified by idEscritura {
+  o String idEscritura
+  --> Predio predio
+  --> Propietario propietario
+  o String fecha
+  o String hashDocumento
+}
+
+asset Planos identified by idPlano {
+  o String idPlano
+  --> Predio predio 
+  o String hashDocumento
+}
+
+//transacciones en el blockchain
+
+transaction InscribirPredio {
+  o String codigoCatastral
+  o String cedulaPropietario
+  o String nombre
+  o String apellido
+}
+
+transaction agregarEscritura {
+  o String idEscritura
+  
+}
+
+//eventos en el blockchain
