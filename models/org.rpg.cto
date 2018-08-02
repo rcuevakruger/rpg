@@ -20,6 +20,7 @@ participant RegistroPropiedadGuayaquil identified by idRPG {
 
 asset Predio identified by codigoCatastral {
   o String codigoCatastral
+  o estadoPredio estado default="LIBRE"
   --> Propietario propietario
 }
 
@@ -33,7 +34,7 @@ asset Escritura identified by idEscritura {
 
 asset Planos identified by idPlano {
   o String idPlano
-  --> Predio predio 
+  --> Predio predio optional
   o String hashDocumento
 }
 
@@ -49,11 +50,25 @@ enum estadoPredio {
 transaction InscribirPredio {
   o String codigoCatastral
   o String cedulaPropietario
-  o String nombre
-  o String apellido
+  o String nombre optional
+  o String apellido optional
+}
+
+transaction traspasoDeDominio {
+  --> Predio codigoCatastralPredio
+  o String cedulaNuevoPropietario
+  --> Propietario cedulaAntiguoPropietario
+  o String nombre optional
+  o String apellido optional
+}
+
+transaction cambiarEstadoDePredio {
+  --> Predio codigoCatastralPredio
+  o estadoPredio estado
 }
 
 transaction agregarEscritura {
+  --> Predio codigoCatastralPredio
   o String idEscritura
   
 }
