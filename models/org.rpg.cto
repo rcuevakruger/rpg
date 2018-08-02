@@ -37,6 +37,13 @@ asset Planos identified by idPlano {
   o String hashDocumento
 }
 
+//estados en los que se puede encontrar el predio
+
+enum estadoPredio {
+  o LIBRE
+  o BLOQUEADO
+}
+
 //transacciones en el blockchain
 
 transaction InscribirPredio {
