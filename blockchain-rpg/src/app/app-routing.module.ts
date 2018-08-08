@@ -26,6 +26,8 @@ import { MunicipioComponent } from './Municipio/Municipio.component';
 import { RegistroPropiedadGuayaquilComponent } from './RegistroPropiedadGuayaquil/RegistroPropiedadGuayaquil.component';
 
 import { InscribirPredioComponent } from './InscribirPredio/InscribirPredio.component';
+import { traspasoDeDominioComponent } from './traspasoDeDominio/traspasoDeDominio.component';
+import { cambiarEstadoDePredioComponent } from './cambiarEstadoDePredio/cambiarEstadoDePredio.component';
 import { agregarEscrituraComponent } from './agregarEscritura/agregarEscritura.component';
 
 const routes: Routes = [
@@ -37,6 +39,8 @@ const routes: Routes = [
   { path: 'Municipio', component: MunicipioComponent },
   { path: 'RegistroPropiedadGuayaquil', component: RegistroPropiedadGuayaquilComponent },
   { path: 'InscribirPredio', component: InscribirPredioComponent },
+  { path: 'traspasoDeDominio', component: traspasoDeDominioComponent },
+  { path: 'cambiarEstadoDePredio', component: cambiarEstadoDePredioComponent },
   { path: 'agregarEscritura', component: agregarEscrituraComponent },
   { path: '**', redirectTo: '' }
 ];
