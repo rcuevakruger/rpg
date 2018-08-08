@@ -30,7 +30,11 @@ import { MunicipioComponent } from './Municipio/Municipio.component';
 import { RegistroPropiedadGuayaquilComponent } from './RegistroPropiedadGuayaquil/RegistroPropiedadGuayaquil.component';
 
 import { InscribirPredioComponent } from './InscribirPredio/InscribirPredio.component';
+import { traspasoDeDominioComponent } from './traspasoDeDominio/traspasoDeDominio.component';
+import { cambiarEstadoDePredioComponent } from './cambiarEstadoDePredio/cambiarEstadoDePredio.component';
 import { agregarEscrituraComponent } from './agregarEscritura/agregarEscritura.component';
+
+import {BlockUIModule} from 'ng-block-ui';
 
   @NgModule({
   declarations: [
@@ -43,6 +47,8 @@ import { agregarEscrituraComponent } from './agregarEscritura/agregarEscritura.c
     MunicipioComponent,
     RegistroPropiedadGuayaquilComponent,
     InscribirPredioComponent,
+    traspasoDeDominioComponent,
+    cambiarEstadoDePredioComponent,
     agregarEscrituraComponent
   ],
   imports: [
@@ -50,7 +56,8 @@ import { agregarEscrituraComponent } from './agregarEscritura/agregarEscritura.c
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BlockUIModule
   ],
   providers: [
     DataService
