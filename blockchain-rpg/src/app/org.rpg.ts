@@ -16,6 +16,7 @@ import {Event} from './org.hyperledger.composer.system';
    }
    export class Predio extends Asset {
       codigoCatastral: string;
+      estado: estadoPredio;
       propietario: Propietario;
    }
    export class Escritura extends Asset {
@@ -30,13 +31,29 @@ import {Event} from './org.hyperledger.composer.system';
       predio: Predio;
       hashDocumento: string;
    }
+   export enum estadoPredio {
+      LIBRE,
+      BLOQUEADO,
+   }
    export class InscribirPredio extends Transaction {
       codigoCatastral: string;
       cedulaPropietario: string;
       nombre: string;
       apellido: string;
    }
+   export class traspasoDeDominio extends Transaction {
+      codigoCatastralPredio: Predio;
+      cedulaNuevoPropietario: string;
+      cedulaAntiguoPropietario: Propietario;
+      nombre: string;
+      apellido: string;
+   }
+   export class cambiarEstadoDePredio extends Transaction {
+      codigoCatastralPredio: Predio;
+      estado: estadoPredio;
+   }
    export class agregarEscritura extends Transaction {
+      codigoCatastralPredio: Predio;
       idEscritura: string;
    }
 // }
