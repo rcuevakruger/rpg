@@ -31,13 +31,13 @@ describe('Starting tests for blockchain-rpg', function() {
     })
   });
 
-  it('network-name should be blockchain-rpg@0.0.1',() => {
+  it('network-name should be blockchain-rpg@0.0.2',() => {
     element(by.css('.network-name')).getWebElement()
     .then((webElement) => {
       return webElement.getText();
     })
     .then((txt) => {
-      expect(txt).toBe('blockchain-rpg@0.0.1.bna');
+      expect(txt).toBe('blockchain-rpg@0.0.2.bna');
     });
   });
 
@@ -63,10 +63,10 @@ describe('Starting tests for blockchain-rpg', function() {
       });
     });
 
-    it('Predio table should have 3 columns',() => {
+    it('Predio table should have 4 columns',() => {
       page.navigateTo('/Predio');
       element.all(by.css('.thead-cols th')).then(function(arr) {
-        expect(arr.length).toEqual(3); // Addition of 1 for 'Action' column
+        expect(arr.length).toEqual(4); // Addition of 1 for 'Action' column
       });
     });
   
@@ -172,6 +172,28 @@ describe('Starting tests for blockchain-rpg', function() {
       })
       .then((txt) => {
         expect(txt).toBe('InscribirPredio');
+      });
+    });
+  
+    it('traspasoDeDominio component should be loadable',() => {
+      page.navigateTo('/traspasoDeDominio');
+      browser.findElement(by.id('transactionName'))
+      .then((transactionName) => {
+        return transactionName.getText();
+      })
+      .then((txt) => {
+        expect(txt).toBe('traspasoDeDominio');
+      });
+    });
+  
+    it('cambiarEstadoDePredio component should be loadable',() => {
+      page.navigateTo('/cambiarEstadoDePredio');
+      browser.findElement(by.id('transactionName'))
+      .then((transactionName) => {
+        return transactionName.getText();
+      })
+      .then((txt) => {
+        expect(txt).toBe('cambiarEstadoDePredio');
       });
     });
   
