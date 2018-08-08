@@ -17,6 +17,8 @@ import { Http, Response, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+import { BlockUI, NgBlockUI } from "ng-block-ui";
+
 
 @Injectable()
 export class DataService<Type> {
@@ -24,54 +26,82 @@ export class DataService<Type> {
     private actionUrl: string;
     private headers: Headers;
 
+    @BlockUI() blockUI: NgBlockUI;
+
     constructor(private http: Http) {
         this.actionUrl = '/api/';
+        this.actionUrl = 'http://localhost:3000/api/';  // atento a esta parte, desactivar variable y testear
         this.headers = new Headers();
         this.headers.append('Content-Type', 'application/json');
         this.headers.append('Accept', 'application/json');
     }
 
     public getAll(ns: string): Observable<Type[]> {
+        this.blockUI.start('Loading...');
         console.log('GetAll ' + ns + ' to ' + this.actionUrl + ns);
         return this.http.get(`${this.actionUrl}${ns}`)
           .map(this.extractData)
-          .catch(this.handleError);
+          .catch(this.handleError)
+          .finally(() => {
+            this.blockUI.stop();
+        });
+        ;
     }
 
     public getSingle(ns: string, id: string): Observable<Type> {
+        this.blockUI.start('Loading...');
         console.log('GetSingle ' + ns);
 
         return this.http.get(this.actionUrl + ns + '/' + id + this.resolveSuffix)
           .map(this.extractData)
-          .catch(this.handleError);
+          .catch(this.handleError)
+          .finally(() => {
+            this.blockUI.stop();
+        });
+        ;
     }
 
     public add(ns: string, asset: Type): Observable<Type> {
+        this.blockUI.start('Loading...');
         console.log('Entered DataService add');
         console.log('Add ' + ns);
         console.log('asset', asset);
 
         return this.http.post(this.actionUrl + ns, asset)
           .map(this.extractData)
-          .catch(this.handleError);
+          .catch(this.handleError)
+          .finally(() => {
+            this.blockUI.stop();
+        });
+        ;
     }
 
     public update(ns: string, id: string, itemToUpdate: Type): Observable<Type> {
+        this.blockUI.start('Loading...');        
         console.log('Update ' + ns);
         console.log('what is the id?', id);
         console.log('what is the updated item?', itemToUpdate);
         console.log('what is the updated item?', JSON.stringify(itemToUpdate));
         return this.http.put(`${this.actionUrl}${ns}/${id}`, itemToUpdate)
           .map(this.extractData)
-          .catch(this.handleError);
+          .catch(this.handleError)
+          .finally(() => {
+            this.blockUI.stop();
+        });
+        ;
     }
 
     public delete(ns: string, id: string): Observable<Type> {
+        this.blockUI.start('Loading...');
         console.log('Delete ' + ns);
 
         return this.http.delete(this.actionUrl + ns + '/' + id)
           .map(this.extractData)
-          .catch(this.handleError);
+          .catch(this.handleError)
+          .finally(() => {
+            this.blockUI.stop();
+        });
+        ;
     }
 
     private handleError(error: any): Observable<string> {
