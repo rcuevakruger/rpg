@@ -36,6 +36,40 @@
           
 
             
+              <label for="estado">estado</label>
+              <div class="checkbox">
+                
+                  <label>
+                    <input
+                      
+                        formControlName="estado"
+                      
+                      name="estado"
+                      value="LIBRE"
+                      type="radio"
+                      
+                    />
+                    LIBRE
+                  </label>
+                
+                  <label>
+                    <input
+                      
+                        formControlName="estado"
+                      
+                      name="estado"
+                      value="BLOQUEADO"
+                      type="radio"
+                      
+                    />
+                    BLOQUEADO
+                  </label>
+                
+              </div>
+            
+          
+
+            
               <div class="form-group text-left">
                 <label for="propietario">propietario</label>
                 
@@ -76,6 +110,49 @@
               
               
                 <input [ngModel]="codigoCatastral" formControlName="codigoCatastral" class="form-control" disabled="disabled">  
+              
+
+            </div>
+          
+            <div class="form-group text-left">
+              <label for="estado">estado</label>
+              
+              
+                
+                  <div class="row">
+                    <div class="col-xs-12 checkbox">
+                    
+                      <label>
+                        <input
+                          
+                            formControlName="estado"
+                            [ngModel]="estado"
+                          
+                          name="estado"
+                          value="LIBRE"
+                          type="radio"
+                          
+                        />
+                        LIBRE
+                      </label>
+                    
+                      <label>
+                        <input
+                          
+                            formControlName="estado"
+                            [ngModel]="estado"
+                          
+                          name="estado"
+                          value="BLOQUEADO"
+                          type="radio"
+                          
+                        />
+                        BLOQUEADO
+                      </label>
+                    
+                    </div>
+                  </div>
+                
               
 
             </div>
@@ -164,6 +241,8 @@
             
                 <th class="info">codigoCatastral</th>
             
+                <th class="info">estado</th>
+            
                 <th class="info">propietario</th>
             
               <th class="info-actions">Actions</th>
@@ -174,6 +253,8 @@
 
             
                 <td class="asset-properties">{{asset.codigoCatastral}}</td>
+            
+                <td class="asset-properties">{{asset.estado}}</td>
             
                 <td class="asset-properties">{{asset.propietario}}</td>
             
