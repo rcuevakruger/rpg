@@ -32,6 +32,7 @@ export class agregarEscrituraComponent implements OnInit {
   private currentId;
   private errorMessage;
 
+  codigoCatastralPredio = new FormControl('', Validators.required);
   idEscritura = new FormControl('', Validators.required);
   transactionId = new FormControl('', Validators.required);
   timestamp = new FormControl('', Validators.required);
@@ -39,6 +40,7 @@ export class agregarEscrituraComponent implements OnInit {
 
   constructor(private serviceagregarEscritura: agregarEscrituraService, fb: FormBuilder) {
     this.myForm = fb.group({
+      codigoCatastralPredio: this.codigoCatastralPredio,
       idEscritura: this.idEscritura,
       transactionId: this.transactionId,
       timestamp: this.timestamp
@@ -99,12 +101,14 @@ export class agregarEscrituraComponent implements OnInit {
   addTransaction(form: any): Promise<any> {
     this.Transaction = {
       $class: 'org.rpg.agregarEscritura',
+      'codigoCatastralPredio': this.codigoCatastralPredio.value,
       'idEscritura': this.idEscritura.value,
       'transactionId': this.transactionId.value,
       'timestamp': this.timestamp.value
     };
 
     this.myForm.setValue({
+      'codigoCatastralPredio': null,
       'idEscritura': null,
       'transactionId': null,
       'timestamp': null
@@ -113,8 +117,10 @@ export class agregarEscrituraComponent implements OnInit {
     return this.serviceagregarEscritura.addTransaction(this.Transaction)
     .toPromise()
     .then(() => {
+      this.loadAll();      
       this.errorMessage = null;
       this.myForm.setValue({
+        'codigoCatastralPredio': null,
         'idEscritura': null,
         'transactionId': null,
         'timestamp': null
@@ -132,6 +138,7 @@ export class agregarEscrituraComponent implements OnInit {
   updateTransaction(form: any): Promise<any> {
     this.Transaction = {
       $class: 'org.rpg.agregarEscritura',
+      'codigoCatastralPredio': this.codigoCatastralPredio.value,
       'idEscritura': this.idEscritura.value,
       'timestamp': this.timestamp.value
     };
@@ -181,10 +188,17 @@ export class agregarEscrituraComponent implements OnInit {
     .then((result) => {
       this.errorMessage = null;
       const formObject = {
+        'codigoCatastralPredio': null,
         'idEscritura': null,
         'transactionId': null,
         'timestamp': null
       };
+
+      if (result.codigoCatastralPredio) {
+        formObject.codigoCatastralPredio = result.codigoCatastralPredio;
+      } else {
+        formObject.codigoCatastralPredio = null;
+      }
 
       if (result.idEscritura) {
         formObject.idEscritura = result.idEscritura;
@@ -220,6 +234,7 @@ export class agregarEscrituraComponent implements OnInit {
 
   resetForm(): void {
     this.myForm.setValue({
+      'codigoCatastralPredio': null,
       'idEscritura': null,
       'transactionId': null,
       'timestamp': null

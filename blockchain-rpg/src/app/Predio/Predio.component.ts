@@ -33,11 +33,13 @@ export class PredioComponent implements OnInit {
   private errorMessage;
 
   codigoCatastral = new FormControl('', Validators.required);
+  estado = new FormControl('', Validators.required);
   propietario = new FormControl('', Validators.required);
 
   constructor(public servicePredio: PredioService, fb: FormBuilder) {
     this.myForm = fb.group({
       codigoCatastral: this.codigoCatastral,
+      estado: this.estado,
       propietario: this.propietario
     });
   };
@@ -97,11 +99,13 @@ export class PredioComponent implements OnInit {
     this.asset = {
       $class: 'org.rpg.Predio',
       'codigoCatastral': this.codigoCatastral.value,
+      'estado': this.estado.value,
       'propietario': this.propietario.value
     };
 
     this.myForm.setValue({
       'codigoCatastral': null,
+      'estado': null,
       'propietario': null
     });
 
@@ -111,6 +115,7 @@ export class PredioComponent implements OnInit {
       this.errorMessage = null;
       this.myForm.setValue({
         'codigoCatastral': null,
+        'estado': null,
         'propietario': null
       });
       this.loadAll();
@@ -128,6 +133,7 @@ export class PredioComponent implements OnInit {
   updateAsset(form: any): Promise<any> {
     this.asset = {
       $class: 'org.rpg.Predio',
+      'estado': this.estado.value,
       'propietario': this.propietario.value
     };
 
@@ -180,6 +186,7 @@ export class PredioComponent implements OnInit {
       this.errorMessage = null;
       const formObject = {
         'codigoCatastral': null,
+        'estado': null,
         'propietario': null
       };
 
@@ -187,6 +194,12 @@ export class PredioComponent implements OnInit {
         formObject.codigoCatastral = result.codigoCatastral;
       } else {
         formObject.codigoCatastral = null;
+      }
+
+      if (result.estado) {
+        formObject.estado = result.estado;
+      } else {
+        formObject.estado = null;
       }
 
       if (result.propietario) {
@@ -212,6 +225,7 @@ export class PredioComponent implements OnInit {
   resetForm(): void {
     this.myForm.setValue({
       'codigoCatastral': null,
+      'estado': null,
       'propietario': null
       });
   }

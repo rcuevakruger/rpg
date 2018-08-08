@@ -109,7 +109,7 @@ export class traspasoDeDominioComponent implements OnInit {
       $class: 'org.rpg.traspasoDeDominio',
       'codigoCatastralPredio': this.codigoCatastralPredio.value,
       'cedulaNuevoPropietario': this.cedulaNuevoPropietario.value,
-      'cedulaAntiguoPropietario': this.cedulaAntiguoPropietario.value,
+      'cedulaAntiguoPropietario': '"' + this.cedulaAntiguoPropietario.value + '"',
       'nombre': this.nombre.value,
       'apellido': this.apellido.value,
       'transactionId': this.transactionId.value,
@@ -129,6 +129,7 @@ export class traspasoDeDominioComponent implements OnInit {
     return this.servicetraspasoDeDominio.addTransaction(this.Transaction)
     .toPromise()
     .then(() => {
+      this.loadAll();
       this.errorMessage = null;
       this.myForm.setValue({
         'codigoCatastralPredio': null,

@@ -125,6 +125,7 @@ export class InscribirPredioComponent implements OnInit {
     return this.serviceInscribirPredio.addTransaction(this.Transaction)
     .toPromise()
     .then(() => {
+      this.loadAll();
       this.errorMessage = null;
       this.myForm.setValue({
         'codigoCatastral': null,
