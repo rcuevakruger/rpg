@@ -27,6 +27,16 @@
 
             
               <div class="form-group text-left">
+                <label for="codigoCatastralPredio">codigoCatastralPredio</label>
+                
+                    <textarea formControlName="codigoCatastralPredio" class="form-control" rows="3"></textarea>
+                
+              </div>
+            
+          
+
+            
+              <div class="form-group text-left">
                 <label for="idEscritura">idEscritura</label>
                 
                   <input formControlName="idEscritura" type="text" class="form-control">
@@ -80,6 +90,17 @@
         <div class="modal-body">
 
 
+          
+            <div class="form-group text-left">
+              <label for="codigoCatastralPredio">codigoCatastralPredio</label>
+
+              
+                
+                  <textarea [ngModel]="codigoCatastralPredio" formControlName="codigoCatastralPredio" class="form-control" rows="3"></textarea>
+                
+              
+
+            </div>
           
             <div class="form-group text-left">
               <label for="idEscritura">idEscritura</label>
@@ -171,6 +192,11 @@
           When invoked, this transaction will have the following attributes:
           <br>
           <ul>
+            
+
+              
+                <li><span class="attribute"><b>codigoCatastralPredio</b></span></li>
+              
             
 
               
